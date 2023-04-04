@@ -18,12 +18,13 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementUiResolver()],
       imports: ['vue', 'vue-router'],
+      dts: 'types/auto-imports.d.ts',
     }),
     Components({
       dirs: ['src/components', 'src/layouts'],
       resolvers: [ElementUiResolver()],
       extensions: ['vue'],
-      dts: true,
+      dts: 'types/components.d.ts',
       deep: true,
       directoryAsNamespace: true,
     }),
