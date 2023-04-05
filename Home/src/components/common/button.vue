@@ -1,47 +1,48 @@
 <template>
   <button
-    :class="componentId"
-    class="common-button border-[1px] border-white w-[8rem] h-[3rem] rounded-[1.5rem] hover:bg-[--hoverColor] duration-300 hover:border-[--hoverColor]">
+    @click="ToLink(props.link)"
+    :ref="getDivRef"
+    :style="{
+      backgroundColor: props.color,
+      width: `${props.scale * 8}rem`,
+      height: `${props.scale * 3}rem`,
+      borderRadius: `${props.scale * 1.5}rem`,
+      borderWidth: `${props.scale * 1}px`,
+    }"
+    class="common-button border-[1px] border-white w-[8rem] h-[3rem] rounded-[1.5rem] hover:bg-[--hoverColor] duration-200 hover:border-[--hoverColor]">
     <slot></slot>
   </button>
 </template>
 
 <script setup lang="ts">
 import { compositeCss } from '@/utils/style'
-import { nextTick } from 'process'
-import { ref } from 'vue'
-let componentId = ref(getComponentId())
 
-function getComponentId() {
-  return 'component' + Math.round(Math.random() * 10000000000000)
+let rootRef = ref(null)
+
+const getDivRef = (el: any) => {
+  rootRef.value = el
 }
+function ToLink(link: string) {
+  location.href = link
+}
+
 const props = withDefaults(
   defineProps<{
     color?: string
     scale?: number
     hoverColor?: string
+    link?: string
   }>(),
   {
     modelValue: 'button',
     color: '#fff',
     scale: 1,
     hoverColor: '#e74c3c',
+    link: '#',
   },
 )
 nextTick(() => {
-  const classId = componentId
-
-  let commonButtonArr = document.getElementsByClassName(classId.value) as any
-  while (commonButtonArr.length > 1) {
-    componentId.value = getComponentId()
-    commonButtonArr = document.getElementsByClassName(classId.value)
-  }
-  const commonButton: HTMLElement = commonButtonArr[0]
-  commonButton.style.backgroundColor = props.color
-  commonButton.style.width = `${props.scale * 8}rem`
-  commonButton.style.height = `${props.scale * 3}rem`
-  commonButton.style.borderRadius = `${props.scale * 1.5}rem`
-  commonButton.style.borderWidth = `${props.scale * 1}px`
+  const commonButton: HTMLElement = rootRef.value as any
   commonButton.style.cssText = compositeCss([
     {
       key: '--hoverColor',

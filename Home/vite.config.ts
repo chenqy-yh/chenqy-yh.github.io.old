@@ -5,7 +5,7 @@ import path from 'path'
 // 自动导入
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementUiResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 function _resolve(dir: string) {
   return path.resolve(__dirname, dir)
@@ -16,14 +16,13 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementUiResolver()],
+      resolvers: [ElementPlusResolver()],
       imports: ['vue', 'vue-router'],
       dts: 'types/auto-imports.d.ts',
     }),
     Components({
       dirs: ['src/components', 'src/layouts'],
-      resolvers: [ElementUiResolver()],
-      extensions: ['vue'],
+      resolvers: [ElementPlusResolver()],
       dts: 'types/components.d.ts',
       deep: true,
       directoryAsNamespace: true,

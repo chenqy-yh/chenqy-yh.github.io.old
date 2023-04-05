@@ -1,9 +1,12 @@
 <template>
-  <div class="menu-container h-16 w-screen flex items-center justify-center">
+  <div
+    :ref="getRef"
+    class="menu-container h-16 w-screen flex items-center justify-center select-none">
+    <div class="bg-cover fixed top-0 left-0 h-16 w-full z-[-1]"></div>
     <div class="menu-main-container w-[80%] flex items-center justify-between">
       <div class="left-container flex items-center justify-between">
         <img :src="Menu_left_pic_url" class="w-10" />
-        <div class="text-[25px] ml-3 text-white">CHENの陋室</div>
+        <div class="text-[25px] ml-3 text-white">CHENの温柔乡</div>
       </div>
       <div class="right-container flex items-center justify-around">
         <div
@@ -26,6 +29,14 @@
 </template>
 <style lang="scss">
 .menu-container {
+  .bg-cover {
+    opacity: 0;
+    background: linear-gradient(to right, #eed3ce, #71b4c8);
+    transition: all 0.4s;
+    &.active {
+      opacity: 1;
+    }
+  }
   .menu-main-container {
     .left-container {
       .text {
@@ -41,7 +52,29 @@
 
 <script setup lang="ts">
 import { CommonEnum } from '@/enum/commonEnum'
+
+const rootRef = ref(null)
 const Menu_left_pic_url = CommonEnum.MENU_LEFT_PIC_URL
+
+function getRef(el: any) {
+  rootRef.value = el
+}
+
+function scrollhandler(el: HTMLElement) {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+  if (scrollTop >= 100) {
+    el.classList.add('active')
+  } else {
+    el.classList.remove('active')
+  }
+}
+
+nextTick(() => {
+  const el = document.querySelector('.bg-cover') as HTMLElement
+  window.addEventListener('scroll', () => {
+    scrollhandler(el)
+  })
+})
 
 const right_container_list = [
   {
