@@ -13,6 +13,11 @@ const routes: RouteRecordRaw[] = [
         name: 'home.article',
         component: () => import('../views/home/articles.vue'),
       },
+      {
+        path: '/about',
+        name: 'about',
+        component: () => import('../views/about/index.vue'),
+      },
     ],
   },
   {
@@ -24,7 +29,7 @@ const routes: RouteRecordRaw[] = [
 
 function formatRoutes(routes: RouteRecordRaw[]) {
   return routes.map((route) => {
-    route.path = env.VITE_BASE_URL + route.path
+    route.path = route.path
     return route
   })
 }

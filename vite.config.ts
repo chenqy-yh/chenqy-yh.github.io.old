@@ -23,7 +23,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         '@': _resolve('src'),
       },
     },
-    base: env.VITE_BASE_URL,
     build: setupBuildOptions(),
   }
 }

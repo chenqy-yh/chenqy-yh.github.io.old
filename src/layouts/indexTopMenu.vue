@@ -4,7 +4,9 @@
     class="menu-container h-16 w-screen flex items-center justify-center select-none">
     <div class="bg-cover common-gradient-color fixed top-0 left-0 h-16 w-full z-[-1]"></div>
     <div class="menu-main-container w-[90%] flex items-center justify-between">
-      <div class="left-container">
+      <div
+        class="left-container lg:hidden"
+        @click="menuService.showLeftMenu.value = !menuService.showLeftMenu.value">
         <i class="iconfont icon-List text-white cursor-pointer"></i>
       </div>
       <div class="mid-container flex items-center justify-between">
@@ -14,7 +16,9 @@
       <div class="right-container flex items-center justify-around">
         <div
           class="right-container-content items-center h-16 px-2 z-0 relative group cursor-pointer hidden lg:flex"
-          v-for="(menu, i1) in menuService.menuTags">
+          v-show="menu.active == undefined || menu.active == true"
+          v-for="(menu, i1) in menuService.menuTags"
+          @click="handleMenuClick({ name: menu.route } as RouteRecordRaw)">
           <i class="text-white z-1" :class="menu.icon"></i>
           <div class="text-white leading-[30px] z-100 ml-1 text-[14px]">{{ menu.name }}</div>
           <i
@@ -60,9 +64,20 @@
 <script setup lang="ts">
 import { CommonEnum } from '@/enum/commonEnum'
 import menuService from '@/composable/menu'
+import common from '@/store/common'
+import { ToLink } from '@/utils/function'
+import { RouteRecordRaw } from 'vue-router'
 
+console.log('show', menuService.menuTags[0]?.active)
+
+const commonStore = common()
 const rootRef = ref(null)
 const Menu_left_pic_url = CommonEnum.MENU_LEFT_PIC_URL
+
+function handleMenuClick(route: RouteRecordRaw) {
+  commonStore.isHome = route.name == 'home'
+  ToLink('', false, route, undefined)
+}
 
 function getRef(el: any) {
   rootRef.value = el

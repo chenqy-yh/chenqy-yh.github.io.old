@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     CommonLink: typeof import('./../src/components/common/link.vue')['default']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     Home: typeof import('./../src/layouts/home.vue')['default']
+    IndexContent: typeof import('./../src/components/index/content.vue')['default']
     IndexLeftMenu: typeof import('./../src/layouts/indexLeftMenu.vue')['default']
     IndexTopMenu: typeof import('./../src/layouts/indexTopMenu.vue')['default']
     LinkGroup: typeof import('./../src/components/link/group.vue')['default']

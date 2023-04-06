@@ -5,8 +5,9 @@ function ToLink(link: string, isWebLink: boolean, route?: RouteRecordRaw, select
   if (isWebLink) {
     location.href = link
   } else {
+    console.log(route)
     router.push(route!).then(() => {
-      AnchorJump(selector!)
+      if (selector != undefined) AnchorJump(selector!)
     })
   }
   return true
