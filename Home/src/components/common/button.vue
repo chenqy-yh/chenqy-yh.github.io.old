@@ -1,6 +1,5 @@
 <template>
   <button
-    @click="ToLink(props.link)"
     :ref="getDivRef"
     :style="{
       backgroundColor: props.color,
@@ -22,23 +21,17 @@ let rootRef = ref(null)
 const getDivRef = (el: any) => {
   rootRef.value = el
 }
-function ToLink(link: string) {
-  location.href = link
-}
-
 const props = withDefaults(
   defineProps<{
     color?: string
     scale?: number
     hoverColor?: string
-    link?: string
   }>(),
   {
     modelValue: 'button',
     color: '#fff',
     scale: 1,
     hoverColor: '#e74c3c',
-    link: '#',
   },
 )
 nextTick(() => {

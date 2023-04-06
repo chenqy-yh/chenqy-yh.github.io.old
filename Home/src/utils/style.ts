@@ -5,7 +5,6 @@ interface KV {
 
 function formatCssText(cssText: string) {
   const commonButton: HTMLElement = document.querySelector('.common-button')!
-  console.log(commonButton.style.cssText)
   const cssList = commonButton.style.cssText.split(';')
   cssList.pop()
   const cssArr = cssList.map((item) => {

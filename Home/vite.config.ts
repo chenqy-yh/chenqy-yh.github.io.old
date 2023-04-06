@@ -1,36 +1,23 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import { ConfigEnv, UserConfigExport, defineConfig } from 'vite'
 
 // 自动导入
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { setupVitePlugins } from './vite/plugins/index'
+// build 配置
+import { setupBuildOptions } from './vite/build'
 
 function _resolve(dir: string) {
   return path.resolve(__dirname, dir)
 }
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()],
-      imports: ['vue', 'vue-router'],
-      dts: 'types/auto-imports.d.ts',
-    }),
-    Components({
-      dirs: ['src/components', 'src/layouts'],
-      resolvers: [ElementPlusResolver()],
-      dts: 'types/components.d.ts',
-      deep: true,
-      directoryAsNamespace: true,
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': _resolve('src'),
+export default ({ command, mode }: ConfigEnv): UserConfigExport => {
+  return {
+    plugins: setupVitePlugins(command === 'serve'),
+    resolve: {
+      alias: {
+        '@': _resolve('src'),
+      },
     },
-  },
-})
+    build: setupBuildOptions(),
+  }
+}

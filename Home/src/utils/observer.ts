@@ -1,3 +1,12 @@
+import { CommonEnum } from '@/enum/commonEnum'
+import router from '@/router'
+import store from '@/utils/store'
+
+interface ScrollRecord {
+  pos: number
+  path: string
+}
+
 function observerElIntoView(
   el: HTMLElement,
   intoFn: (...intoArgs: unknown[]) => void,
@@ -17,4 +26,60 @@ function observerElIntoView(
   observer.observe(el)
 }
 
-export { observerElIntoView }
+function listenScrollTop() {
+  const debounce = () => {
+    let timer: null | NodeJS.Timer = null
+    return () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        const nowPosition = document.documentElement.scrollTop || document.body.scrollTop
+        store.set(CommonEnum.SCROLL_LAST_POS, {
+          pos: nowPosition,
+          path: router.currentRoute.value.path,
+        })
+      }, 300)
+    }
+  }
+  const scrollFn = debounce()
+  window.addEventListener('scroll', () => {
+    scrollFn()
+  })
+}
+
+// 监听用户滚动位置
+// function listenScrollTop() {
+//   const debounce = () => {
+//     let timer: NodeJS.Timer | null = null
+//     return () => {
+//       if (timer) {
+//         clearTimeout(timer)
+//       }
+//       timer = setTimeout(() => {
+//         localStorage.setItem(
+//           CommonEnum.SCROLL_LAST_POS,
+//           JSON.stringify(document.body.scrollTop || document.documentElement.scrollTop),
+//         )
+//       }, 500)
+//     }
+//   }
+//   const scrollFn = debounce()
+//   window.addEventListener('scroll', () => {
+//     scrollFn()
+//   })
+// }
+
+async function scrollToStorePosition() {
+  const scrollRecord: ScrollRecord = await store.get<ScrollRecord>(CommonEnum.SCROLL_LAST_POS)
+  if (scrollRecord && scrollRecord.path === router.currentRoute.value.path) {
+    window.scroll({
+      top: scrollRecord.pos,
+      behavior: 'instant', // 禁用滚动效果
+    })
+  } else {
+    store.remove(CommonEnum.SCROLL_LAST_POS)
+  }
+}
+
+export { observerElIntoView, listenScrollTop, scrollToStorePosition }

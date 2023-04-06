@@ -1,14 +1,22 @@
-let throttleTimer: NodeJS.Timer | null = null
+import router from '@/router'
+import { RouteRecordRaw } from 'vue-router'
 
-// 节流
-const throttle = (fn: (el: HTMLElement) => void, delay: number): Function => {
-  return (el: HTMLElement) => {
-    if (throttleTimer) return
-    fn(el)
-    throttleTimer = setTimeout(() => {
-      throttleTimer = null
-    }, delay)
+function ToLink(link: string, isWebLink: boolean, route?: RouteRecordRaw, selector?: string) {
+  if (isWebLink) {
+    location.href = link
+  } else {
+    router.push(route!).then(() => {
+      AnchorJump(selector!)
+    })
   }
+  return true
 }
 
-export { throttle }
+function AnchorJump(selector: string) {
+  const el = document.querySelector(selector)!
+  el.scrollIntoView({
+    behavior: 'smooth',
+  })
+}
+
+export { ToLink, AnchorJump }

@@ -1,5 +1,7 @@
 <template>
-  <div class="h-[400px]">123</div>
+  <TransitionGroup>
+    <div></div>
+  </TransitionGroup>
 </template>
 
 <script setup lang="ts"></script>

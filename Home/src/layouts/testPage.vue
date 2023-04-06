@@ -1,18 +1,24 @@
 <template>
   <div>
-    <el-popover placement="right" width="200" trigger="hover" :show-arrow="false">
-      <template #reference>
-        <el-button>hover 激活</el-button>
-      </template>
-      <div class="w-[200px] h-[200px] bg-red-300">this is a demo</div>
-    </el-popover>
+    <TransitionGroup name="scaleOpacity">
+      <div v-show="show" class="bg-red-500 w-[100px] h-[100px]" key="1"></div>
+    </TransitionGroup>
+    <button @click="show = !show" class="border border-black fixed top-[200px]">change</button>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const show = ref(true)
+</script>
 
 <style lang="scss">
-.el-popover {
-  padding: 0 !important;
+.scaleOpacity-enter-active,
+.scaleOpacity-leave-active {
+  transition: all 1s;
+}
+.scaleOpacity-enter-from,
+.scaleOpacity-leave-to {
+  transform: scale(0.3);
+  opacity: 0;
 }
 </style>

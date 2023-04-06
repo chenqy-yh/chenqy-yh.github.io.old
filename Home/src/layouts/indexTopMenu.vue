@@ -2,26 +2,34 @@
   <div
     :ref="getRef"
     class="menu-container h-16 w-screen flex items-center justify-center select-none">
-    <div class="bg-cover fixed top-0 left-0 h-16 w-full z-[-1]"></div>
-    <div class="menu-main-container w-[80%] flex items-center justify-between">
-      <div class="left-container flex items-center justify-between">
+    <div class="bg-cover common-gradient-color fixed top-0 left-0 h-16 w-full z-[-1]"></div>
+    <div class="menu-main-container w-[90%] flex items-center justify-between">
+      <div class="left-container">
+        <i class="iconfont icon-List text-white cursor-pointer"></i>
+      </div>
+      <div class="mid-container flex items-center justify-between">
         <img :src="Menu_left_pic_url" class="w-10" />
         <div class="text-[25px] ml-3 text-white">CHENの温柔乡</div>
       </div>
       <div class="right-container flex items-center justify-around">
         <div
-          class="right-container-content flex items-center h-16 px-2 z-0 relative group cursor-pointer"
-          v-for="(menu, i1) in right_container_list">
+          class="right-container-content items-center h-16 px-2 z-0 relative group cursor-pointer hidden lg:flex"
+          v-for="(menu, i1) in menuService.menuTags">
           <i class="text-white z-1" :class="menu.icon"></i>
-          <div class="text-white leading-[30px] z-100 ml-1">{{ menu.name }}</div>
+          <div class="text-white leading-[30px] z-100 ml-1 text-[14px]">{{ menu.name }}</div>
           <i
-            class="iconfont icon-down text-white z-100 group-hover:rotate-180 duration-200"
+            class="iconfont icon-down text-white z-100 group-hover:rotate-180 duration-200 text-[20px]"
             :class="{
               hidden: !menu?.children,
             }"></i>
           <div
             class="item-cover absolute left-0 top-0 w-full h-full z-[-1] bg-slate-600 opacity-0 group-hover:opacity-20 duration-[0.4s]"></div>
           <menu-bubble v-show="menu?.children" class="hidden group-hover:block"></menu-bubble>
+        </div>
+        <div class="sousuo flex items-center h-16 px-2 z-0 relative group cursor-pointer">
+          <i class="iconfont icon-sousuo text-white z-1"></i>
+          <div
+            class="item-cover absolute left-0 top-0 w-full h-full z-[-1] bg-slate-600 opacity-0 group-hover:opacity-20 duration-[0.4s]"></div>
         </div>
       </div>
     </div>
@@ -31,14 +39,13 @@
 .menu-container {
   .bg-cover {
     opacity: 0;
-    background: linear-gradient(to right, #eed3ce, #71b4c8);
     transition: all 0.4s;
     &.active {
       opacity: 1;
     }
   }
   .menu-main-container {
-    .left-container {
+    .mid-container {
       .text {
       }
     }
@@ -52,6 +59,7 @@
 
 <script setup lang="ts">
 import { CommonEnum } from '@/enum/commonEnum'
+import menuService from '@/composable/menu'
 
 const rootRef = ref(null)
 const Menu_left_pic_url = CommonEnum.MENU_LEFT_PIC_URL
@@ -62,7 +70,7 @@ function getRef(el: any) {
 
 function scrollhandler(el: HTMLElement) {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-  if (scrollTop >= 100) {
+  if (scrollTop >= 1) {
     el.classList.add('active')
   } else {
     el.classList.remove('active')
@@ -75,37 +83,4 @@ nextTick(() => {
     scrollhandler(el)
   })
 })
-
-const right_container_list = [
-  {
-    name: 'Index',
-    icon: 'iconfont icon-home',
-    children: [{}],
-  },
-  {
-    name: 'Post',
-    icon: 'iconfont icon-list',
-    children: [{}],
-  },
-  {
-    name: 'About',
-    icon: 'iconfont icon-user-filling',
-  },
-  {
-    name: 'About',
-    icon: 'iconfont icon-user-filling',
-  },
-  {
-    name: 'About',
-    icon: 'iconfont icon-user-filling',
-  },
-  {
-    name: 'About',
-    icon: 'iconfont icon-user-filling',
-  },
-  {
-    name: 'About',
-    icon: 'iconfont icon-user-filling',
-  },
-] as MenuTag[]
 </script>
