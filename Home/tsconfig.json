@@ -35,7 +35,6 @@
     "mock/**/*.ts",
     "types/**/*.ts",
     "types/**/*.d.ts",
-    "vite/**/*.ts"
   ],
   "references": [
     {

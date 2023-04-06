@@ -9,16 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Articles: typeof import('../src/views/home/articles.vue')['default']
     CommonBlock: typeof import('./../src/components/common/block.vue')['default']
     CommonButton: typeof import('./../src/components/common/button.vue')['default']
     CommonCard: typeof import('./../src/components/common/card.vue')['default']
     CommonLink: typeof import('./../src/components/common/link.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElCol: typeof import('element-plus/es')['ElCol']
     ElPopover: typeof import('element-plus/es')['ElPopover']
-    ElRow: typeof import('element-plus/es')['ElRow']
     Home: typeof import('./../src/layouts/home.vue')['default']
     IndexLeftMenu: typeof import('./../src/layouts/indexLeftMenu.vue')['default']
     IndexTopMenu: typeof import('./../src/layouts/indexTopMenu.vue')['default']
@@ -27,8 +22,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TestPage: typeof import('./../src/layouts/testPage.vue')['default']
-    TransitionFade: typeof import('./../src/components/transition/fade.vue')['default']
-    TransitionFadeTransition: typeof import('../src/components/transition/fade.vue')['default']
     TransitionScaleOpacity: typeof import('./../src/components/transition/scaleOpacity.vue')['default']
   }
 }

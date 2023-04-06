@@ -74,8 +74,7 @@ async function scrollToStorePosition() {
   const scrollRecord: ScrollRecord = await store.get<ScrollRecord>(CommonEnum.SCROLL_LAST_POS)
   if (scrollRecord && scrollRecord.path === router.currentRoute.value.path) {
     window.scroll({
-      top: scrollRecord.pos,
-      behavior: 'instant', // 禁用滚动效果
+      top: scrollRecord.pos, // 禁用滚动效果
     })
   } else {
     store.remove(CommonEnum.SCROLL_LAST_POS)

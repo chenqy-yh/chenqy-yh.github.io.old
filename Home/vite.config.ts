@@ -18,6 +18,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         '@': _resolve('src'),
       },
     },
+    base: '/',
     build: setupBuildOptions(),
   }
 }
