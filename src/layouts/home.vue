@@ -75,12 +75,11 @@
 import { CommonEnum } from '@/enum/commonEnum'
 import { ToLink } from '@/utils/function'
 import Articles from '@/views/home/articles.vue'
-import _ from 'lodash'
 import Typed from 'typed.js'
 import { nextTick } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
-const charSet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-const res = _.sampleSize(charSet, 10).join().replace(/\,/g, '')
+
+const env = import.meta.env
 
 const indexBgUrl = CommonEnum.INDEX_BG_URL
 const colorList = ['#ff4c06', '#ff0606', '#ff0672', '#ff0909']

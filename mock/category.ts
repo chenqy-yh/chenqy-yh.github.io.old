@@ -1,6 +1,5 @@
-import { MockMethod } from 'vite-plugin-mock'
 import { Random } from 'mockjs'
-import _ from 'lodash'
+import { MockMethod } from 'vite-plugin-mock'
 const imgNum = 6
 
 export default [

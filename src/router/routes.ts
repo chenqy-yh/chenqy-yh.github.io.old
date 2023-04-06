@@ -1,5 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 
+const env = import.meta.env
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -20,4 +22,11 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
-export default routes
+function formatRoutes(routes: RouteRecordRaw[]) {
+  return routes.map((route) => {
+    route.path = env.VITE_BASE_URL + route.path
+    return route
+  })
+}
+
+export default formatRoutes(routes)

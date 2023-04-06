@@ -13,7 +13,6 @@ import categoryService from '@/composable/category'
 
 const disciplines = ref([] as Discipline[])
 categoryService.initDisplines().then(({ data }) => {
-  console.log(data)
   disciplines.value = data
 })
 </script>

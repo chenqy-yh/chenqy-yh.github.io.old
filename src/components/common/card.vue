@@ -4,7 +4,7 @@
     <div class="bg-img relative">
       <img
         :src="props.discipline.pic"
-        class="h-[13rem] w-[23rem] object-cover object-bottom cursor-pointer" />
+        class="testpic h-[13rem] w-[23rem] object-cover object-bottom cursor-pointer" />
       <div class="absolute text-white text-[1.4rem] top-[75%] left-[8%] font-[300]">
         {{ props.discipline.title_zh }}
       </div>
@@ -37,7 +37,9 @@ const props = defineProps<{
   discipline: Discipline
 }>()
 
-console.log(props.discipline)
+nextTick(() => {
+  const testpic: HTMLImageElement = document.querySelector('.testpic') as any
+})
 
 const card_url = '/images/1.webp'
 </script>
