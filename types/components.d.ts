@@ -9,6 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Categories: typeof import('./../src/layouts/categories.vue')['default']
+    Category: typeof import('../src/layouts/categories.vue')['default']
     CommonBlock: typeof import('./../src/components/common/block.vue')['default']
     CommonButton: typeof import('./../src/components/common/button.vue')['default']
     CommonCard: typeof import('./../src/components/common/card.vue')['default']

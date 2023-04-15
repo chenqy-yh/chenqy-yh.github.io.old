@@ -18,7 +18,9 @@
           class="right-container-content items-center h-16 px-2 z-0 relative group cursor-pointer hidden lg:flex"
           v-show="menu.active == undefined || menu.active == true"
           v-for="(menu, i1) in menuService.menuTags"
-          @click="handleMenuClick({ name: menu.route } as RouteRecordRaw)">
+          @click="
+            menu?.children == undefined && handleMenuClick({ name: menu.route } as RouteRecordRaw)
+          ">
           <i class="text-white z-1" :class="menu.icon"></i>
           <div class="text-white leading-[30px] z-100 ml-1 text-[14px]">{{ menu.name }}</div>
           <i
@@ -28,7 +30,10 @@
             }"></i>
           <div
             class="item-cover absolute left-0 top-0 w-full h-full z-[-1] bg-slate-600 opacity-0 group-hover:opacity-20 duration-[0.4s]"></div>
-          <menu-bubble v-show="menu?.children" class="hidden group-hover:block"></menu-bubble>
+          <menu-bubble
+            :bubble-list="menu.children"
+            v-show="menu?.children"
+            class="hidden group-hover:block"></menu-bubble>
         </div>
         <div class="sousuo flex items-center h-16 px-2 z-0 relative group cursor-pointer">
           <i class="iconfont icon-sousuo text-white z-1"></i>
@@ -67,8 +72,6 @@ import menuService from '@/composable/menu'
 import common from '@/store/common'
 import { ToLink } from '@/utils/function'
 import { RouteRecordRaw } from 'vue-router'
-
-console.log('show', menuService.menuTags[0]?.active)
 
 const commonStore = common()
 const rootRef = ref(null)

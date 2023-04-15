@@ -4,4 +4,5 @@ interface MenuTag {
   icon?: string
   children?: MenuTag[]
   active?: boolean
+  link?: string
 }

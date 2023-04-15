@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
+import { loadModuleRoutes } from '@/router/module'
 
 const env = import.meta.env
 
@@ -7,18 +8,18 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: () => import('../layouts/home.vue'),
-    children: [
-      {
-        path: '/article',
-        name: 'home.article',
-        component: () => import('../views/home/articles.vue'),
-      },
-      {
-        path: '/about',
-        name: 'about',
-        component: () => import('../views/about/index.vue'),
-      },
-    ],
+    // children: [
+    //   {
+    //     path: '/article',
+    //     name: 'home.article',
+    //     component: () => import('../views/home/articles.vue'),
+    //   },
+    //   {
+    //     path: '/about',
+    //     name: 'about',
+    //     component: () => import('../views/about/index.vue'),
+    //   },
+    // ],
   },
   {
     path: '/test',
@@ -28,6 +29,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 function formatRoutes(routes: RouteRecordRaw[]) {
+  loadModuleRoutes()
   return routes.map((route) => {
     route.path = route.path
     return route

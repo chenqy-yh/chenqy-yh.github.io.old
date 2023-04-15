@@ -1,5 +1,5 @@
 <template>
-  <div class="articles">
+  <div class="articles border p-[4.5rem]">
     <CommonBlock v-for="discipline in disciplines">
       <CommonCard :discipline="(discipline as any)"></CommonCard>
     </CommonBlock>

@@ -1,19 +1,24 @@
 class Menu {
   menuTags: MenuTag[] = []
-  showLeftMenu = ref(true)
+  showLeftMenu = ref(false)
   constructor() {
     this.menuTags = [
       {
         name: 'Index',
         icon: 'iconfont icon-home',
         route: 'home',
-        children: [{}],
       },
       {
         name: 'Post',
         icon: 'iconfont icon-list',
         route: 'post',
-        children: [{}],
+        children: [
+          {
+            name: 'Categories',
+            icon: 'iconfont icon-list',
+            route: 'categories',
+          },
+        ],
       },
       {
         name: 'About',
@@ -42,9 +47,9 @@ class Menu {
       },
       {
         name: 'Follow Me',
-        route: '',
         icon: 'iconfont icon-githubsquare',
         active: false,
+        link: 'https://github.com/chenqy-yh',
       },
     ] as MenuTag[]
   }

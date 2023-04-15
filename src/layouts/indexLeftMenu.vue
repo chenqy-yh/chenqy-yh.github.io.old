@@ -47,6 +47,10 @@
 <script setup lang="ts">
 import menuService from '@/composable/menu'
 import { ToLink } from '@/utils/function'
+import { RouteRecordRaw } from 'vue-router'
+import common from '@/store/common'
+
+const commonStore = common()
 
 watch(
   menuService.showLeftMenu,
@@ -63,12 +67,32 @@ watch(
   },
 )
 
+function handleMenuClick(route: RouteRecordRaw) {
+  commonStore.isHome = route.name == 'home'
+  ToLink('', false, route, undefined)
+}
+
 nextTick(() => {
-  const leftMenuItem = document.querySelectorAll('.left-menu-item')
-  const followMe: HTMLElement = leftMenuItem[leftMenuItem.length - 1] as any
-  followMe.onclick = () => {
-    ToLink('https://github.com/chenqy-yh', true)
+  const leftMenuItems: HTMLElement[] = document.querySelectorAll('.left-menu-item') as any
+  for (let i = 0; i < leftMenuItems.length; i++) {
+    if (menuService.menuTags[i].route != undefined) {
+      leftMenuItems[i].onclick = () => {
+        menuService.showLeftMenu.value = false
+        handleMenuClick({
+          name: menuService.menuTags[i].route,
+        } as RouteRecordRaw)
+      }
+    } else {
+      leftMenuItems[i].onclick = () => {
+        menuService.showLeftMenu.value = false
+        ToLink(menuService.menuTags[i].link!, true)
+      }
+    }
   }
+  // const followMe: HTMLElement = leftMenuItem[leftMenuItem.length - 1] as any
+  // followMe.onclick = () => {
+  //   ToLink('https://github.com/chenqy-yh', true)
+  // }
 })
 </script>
 

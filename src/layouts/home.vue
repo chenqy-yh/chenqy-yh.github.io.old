@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content bg-gray-200 flex flex-col" @showLeftMenu="fn1" @hiddenLeftMenu="fn2">
+  <div class="home-content bg-gray-200 flex flex-col">
     <!-- 菜单 -->
     <!-- top menu -->
     <index-top-menu class="z-[100] fixed top-0 left-0"></index-top-menu>
@@ -46,8 +46,9 @@
       <img :src="indexBgUrl" class="h-[38rem] w-full object-cover" alt="" />
     </div>
     <!-- index content -->
-    <IndexContent v-if="commonStore.isHome"></IndexContent>
-    <RouterView v-else></RouterView>
+    <!-- <IndexContent v-if="commonStore.isHome"></IndexContent>
+    <RouterView v-else></RouterView> -->
+    <RouterView></RouterView>
   </div>
 </template>
 
@@ -77,6 +78,9 @@ import { ToLink } from '@/utils/function'
 import Typed from 'typed.js'
 import { nextTick } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
+import router from '@/router'
+
+console.log(router.getRoutes())
 
 const commonStore = common()
 
@@ -84,12 +88,6 @@ const indexBgUrl = CommonEnum.INDEX_BG_URL
 const colorList = ['#ff4c06', '#ff0606', '#ff0672', '#ff0909']
 
 //listener
-const fn1 = () => {
-  console.log('showLeftMenu')
-}
-const fn2 = () => {
-  console.log('hiddenLeftMenu')
-}
 // typedjs 实现动态输入效果
 nextTick(() => {
   pageInit()

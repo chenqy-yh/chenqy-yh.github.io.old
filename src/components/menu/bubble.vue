@@ -4,10 +4,15 @@
       class="iconfont icon-sanjiaoxing_shang absolute -top-[1.75rem] text-[2rem] left-1/2 translate-x-[-50%]"></i>
     <div class="container w-[8rem] rounded-xl flex flex-col overflow-hidden">
       <div
-        v-for="menuItem in bubbleList"
+        @click="
+          handleMenuClick({
+            name: menuItem.route,
+          } as RouteRecordRaw)
+        "
+        v-for="menuItem in (props.bubbleList as MenuTag[])"
         class="grid grid-cols-[auto_1fr] pl-3 hover:bg-[#0000001c] py-[.5rem] px-2 duration-200">
-        <i :class="menuItem.icon"></i>
-        <span class="text-center">{{ menuItem.name }}</span>
+        <i :class="(menuItem as MenuTag).icon"></i>
+        <span class="text-center">{{ (menuItem as MenuTag).name }}</span>
       </div>
     </div>
   </div>
@@ -26,18 +31,36 @@
 </style>
 
 <script setup lang="ts">
-const bubbleList = ref([
-  {
-    name: 'Tags',
-    icon: 'iconfont icon-tags-fill',
+import common from '@/store/common'
+import { ToLink } from '@/utils/function'
+import { RouteRecordRaw } from 'vue-router'
+
+const commonStore = common()
+
+function handleMenuClick(route: RouteRecordRaw) {
+  commonStore.isHome = route.name == 'home'
+  ToLink('', false, route, undefined)
+  // console.log(route)
+}
+
+const props = defineProps({
+  bubbleList: {
+    type: Array,
+    default: () =>
+      [
+        {
+          name: 'Tags',
+          icon: 'iconfont icon-tags-fill',
+        },
+        {
+          name: 'Categories',
+          icon: 'iconfont icon-Category',
+        },
+        {
+          name: 'Achieves',
+          icon: 'iconfont icon-star',
+        },
+      ] as MenuTag[],
   },
-  {
-    name: 'Categories',
-    icon: 'iconfont icon-Category',
-  },
-  {
-    name: 'Achieves',
-    icon: 'iconfont icon-star',
-  },
-] as MenuTag[])
+})
 </script>
