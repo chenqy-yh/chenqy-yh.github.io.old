@@ -48,28 +48,6 @@ function listenScrollTop() {
   })
 }
 
-// 监听用户滚动位置
-// function listenScrollTop() {
-//   const debounce = () => {
-//     let timer: NodeJS.Timer | null = null
-//     return () => {
-//       if (timer) {
-//         clearTimeout(timer)
-//       }
-//       timer = setTimeout(() => {
-//         localStorage.setItem(
-//           CommonEnum.SCROLL_LAST_POS,
-//           JSON.stringify(document.body.scrollTop || document.documentElement.scrollTop),
-//         )
-//       }, 500)
-//     }
-//   }
-//   const scrollFn = debounce()
-//   window.addEventListener('scroll', () => {
-//     scrollFn()
-//   })
-// }
-
 async function scrollToStorePosition() {
   const scrollRecord: ScrollRecord = await store.get<ScrollRecord>(CommonEnum.SCROLL_LAST_POS)
   if (scrollRecord && scrollRecord.path === router.currentRoute.value.path) {

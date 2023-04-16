@@ -6,8 +6,8 @@
       backgroundColor: props.color,
       width: props.width,
       height: props.height,
-      opacity: isShow ? '1' : '0',
-      scale: isShow ? '1' : '0.7',
+      opacity: props.animate ? (isShow ? '1' : '0') : '1',
+      scale: props.animate ? (isShow ? '1' : '0.7') : '1',
     }">
     <slot></slot>
   </div>
@@ -15,7 +15,7 @@
 
 <style lang="scss">
 .block-content {
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  box-shadow: rgb(38, 57, 77) 0px 10px 15px -5px;
   transition: all 0.5s;
 }
 </style>
@@ -35,11 +35,13 @@ const props = withDefaults(
     color?: string
     width?: string
     height?: string
+    animate?: boolean
   }>(),
   {
     color: 'transparent',
     width: 'auto',
     height: 'auto',
+    animate: true,
   },
 )
 

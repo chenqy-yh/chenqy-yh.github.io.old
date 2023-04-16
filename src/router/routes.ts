@@ -5,26 +5,14 @@ const env = import.meta.env
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    name: 'home',
-    component: () => import('../layouts/home.vue'),
-    // children: [
-    //   {
-    //     path: '/article',
-    //     name: 'home.article',
-    //     component: () => import('../views/home/articles.vue'),
-    //   },
-    //   {
-    //     path: '/about',
-    //     name: 'about',
-    //     component: () => import('../views/about/index.vue'),
-    //   },
-    // ],
-  },
-  {
     path: '/test',
     name: 'testPage',
-    component: () => import('../layouts/testPage.vue'),
+    component: () => import('@/layouts/testPage.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'notFound',
+    component: () => import('@/views/errors/404.vue'),
   },
 ]
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content bg-gray-200 flex flex-col">
+  <div class="home-content min-h-screen bg-gray-200 flex flex-col pb-[5rem]">
     <!-- 菜单 -->
     <!-- top menu -->
     <index-top-menu class="z-[100] fixed top-0 left-0"></index-top-menu>
@@ -7,15 +7,24 @@
     <index-left-menu class="z-[110] fixed top-0 left-0"></index-left-menu>
     <!-- 顶部图片部分 -->
     <div
-      v-show="commonStore.isHome"
-      class="top-bg-content z-0 h-screen flex justify-center items-center select-none">
+      :class="{
+        'h-[24.5rem]': !isHome,
+        'h-screen': isHome,
+      }"
+      class="top-bg-content z-0 flex justify-center items-center select-none">
       <div class="dimback absolute w-full top-0 left-0 z-[-1]">
-        <img :src="indexBgUrl" class="dim min-h-[600px] h-screen w-full object-cover" />
+        <img
+          :src="indexBgUrl"
+          :class="{
+            'h-[28.5rem]': !isHome,
+            'h-screen': isHome,
+          }"
+          class="dim w-full object-cover z-10" />
       </div>
       <div class="top-main-content z-[5]">
         <!-- home title -->
         <div class="container flex flex-col items-center h-[14rem] relative">
-          <div class="text-white text-[3.6rem]">随便聊聊~</div>
+          <div class="text-white text-[3.6rem]">尽在不言中</div>
           <!-- typejs -->
           <div class="flex flex-col lg:flex-row justify-center gap-3 text-gray-100 mt-2">
             <div class="left-info"></div>
@@ -24,9 +33,9 @@
 
           <!-- button group -->
           <div
+            v-if="isHome"
             class="flex items-center justify-center gap-[2rem] mt-[5rem] absolute top-1/2 z-[10000]">
-            <CommonButton
-              @click="ToLink('', false, { name: 'home.article' } as RouteRecordRaw, '.articles')">
+            <CommonButton @click="AnchorJump('.articles')">
               <i class="iconfont icon-xiashuangjiantou text-white"></i>
               <span class="text-[1rem] ml-[.2rem] text-white">START </span>
             </CommonButton>
@@ -36,19 +45,21 @@
             </CommonButton>
           </div>
           <!-- links -->
-          <div class="flex items-center gap-[2.5rem] justify-center mt-[6rem] absolute top-full">
+          <div
+            v-if="isHome"
+            class="flex items-center gap-[2.5rem] justify-center mt-[6rem] absolute top-full">
             <LinkGroup></LinkGroup>
           </div>
         </div>
       </div>
     </div>
-    <div v-show="!commonStore.isHome">
-      <img :src="indexBgUrl" class="h-[38rem] w-full object-cover" alt="" />
-    </div>
-    <!-- index content -->
-    <!-- <IndexContent v-if="commonStore.isHome"></IndexContent>
-    <RouterView v-else></RouterView> -->
+
+    <!-- Main Content -->
     <RouterView></RouterView>
+    <!-- footer -->
+    <div class="index-footer">
+      <Progressbar></Progressbar>
+    </div>
   </div>
 </template>
 
@@ -72,20 +83,14 @@
 </style>
 
 <script setup lang="ts">
+import Progressbar from '@/components/common/progressbar.vue'
 import { CommonEnum } from '@/enum/commonEnum'
-import common from '@/store/common'
-import { ToLink } from '@/utils/function'
+import { isHome } from '@/utils/common'
+import { AnchorJump, ToLink, getRandomColor } from '@/utils/function'
 import Typed from 'typed.js'
 import { nextTick } from 'vue'
-import { RouteRecordRaw } from 'vue-router'
-import router from '@/router'
-
-console.log(router.getRoutes())
-
-const commonStore = common()
 
 const indexBgUrl = CommonEnum.INDEX_BG_URL
-const colorList = ['#ff4c06', '#ff0606', '#ff0672', '#ff0909']
 
 //listener
 // typedjs 实现动态输入效果
@@ -103,11 +108,6 @@ nextTick(() => {
 
 function pageInit() {
   changeBgColor()
-}
-
-function getRandomColor() {
-  const index = Math.floor(Math.random() * colorList.length)
-  return colorList[index]
 }
 
 function changeBgColor() {

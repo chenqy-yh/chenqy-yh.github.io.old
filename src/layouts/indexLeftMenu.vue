@@ -68,7 +68,6 @@ watch(
 )
 
 function handleMenuClick(route: RouteRecordRaw) {
-  commonStore.isHome = route.name == 'home'
   ToLink('', false, route, undefined)
 }
 

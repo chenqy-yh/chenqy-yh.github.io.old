@@ -1,6 +1,6 @@
 <template>
   <!-- 主体内容 -->
-  <div class="home-main-content h-[2200px] flex flex-col items-center py-[2rem]">
+  <div class="home-main-content flex flex-col items-center py-[2rem]">
     <CommonBlock
       height="auto"
       width="70%"

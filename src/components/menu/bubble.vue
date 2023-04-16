@@ -10,7 +10,7 @@
           } as RouteRecordRaw)
         "
         v-for="menuItem in (props.bubbleList as MenuTag[])"
-        class="grid grid-cols-[auto_1fr] pl-3 hover:bg-[#0000001c] py-[.5rem] px-2 duration-200">
+        class="grid grid-cols-[auto_1fr] pl-3 hover:bg-[#0000001c] py-[.5rem] px-2 duration-200 z-[99999]">
         <i :class="(menuItem as MenuTag).icon"></i>
         <span class="text-center">{{ (menuItem as MenuTag).name }}</span>
       </div>
@@ -38,9 +38,7 @@ import { RouteRecordRaw } from 'vue-router'
 const commonStore = common()
 
 function handleMenuClick(route: RouteRecordRaw) {
-  commonStore.isHome = route.name == 'home'
   ToLink('', false, route, undefined)
-  // console.log(route)
 }
 
 const props = defineProps({

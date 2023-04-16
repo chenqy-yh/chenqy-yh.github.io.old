@@ -6,7 +6,7 @@ class Menu {
       {
         name: 'Index',
         icon: 'iconfont icon-home',
-        route: 'home',
+        route: 'home.content',
       },
       {
         name: 'Post',
@@ -16,33 +16,33 @@ class Menu {
           {
             name: 'Categories',
             icon: 'iconfont icon-list',
-            route: 'categories',
+            route: 'categories.content',
           },
         ],
       },
       {
         name: 'About',
-        route: 'about',
+        route: 'about.content',
         icon: 'iconfont icon-user-filling',
       },
       {
         name: 'About',
-        route: 'about',
+        route: 'about.content',
         icon: 'iconfont icon-user-filling',
       },
       {
         name: 'About',
-        route: 'about',
+        route: 'about.content',
         icon: 'iconfont icon-user-filling',
       },
       {
         name: 'About',
-        route: 'about',
+        route: 'about.content',
         icon: 'iconfont icon-user-filling',
       },
       {
         name: 'About',
-        route: 'about',
+        route: 'about.content',
         icon: 'iconfont icon-user-filling',
       },
       {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="common-card rounded-lg overflow-hidden flex flex-col bg-white hover:scale-105 duration-500 max-w-[23rem]">
+    class="common-card rounded-lg overflow-hidden flex flex-col bg-white hover:scale-105 duration-500 max-w-[23rem] min-w-[22rem]">
     <div class="bg-img relative">
       <img
         :src="props.discipline.pic"
@@ -11,6 +11,7 @@
     </div>
 
     <div class="common-card-content text-gray-700 px-4 pt-3 pb-2">
+      <!-- TODO 优化过长隐藏特效 -->
       <div class="card-content-title">{{ props.discipline.description }}</div>
       <div class="card-content-info flex justify-between items-center">
         <div class="card-info-time flex items-center">

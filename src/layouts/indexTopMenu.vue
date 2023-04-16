@@ -78,7 +78,7 @@ const rootRef = ref(null)
 const Menu_left_pic_url = CommonEnum.MENU_LEFT_PIC_URL
 
 function handleMenuClick(route: RouteRecordRaw) {
-  commonStore.isHome = route.name == 'home'
+  // commonStore.isHome = route.name == 'home'
   ToLink('', false, route, undefined)
 }
 
