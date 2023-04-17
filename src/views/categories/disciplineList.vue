@@ -7,16 +7,22 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { getDisciplineByCategoryName } from '@/apis/category'
-
-const route = useRoute()
-const categoryName = route.fullPath.split('/')
+import { watch } from 'vue'
 
 const disciplines = ref([] as Discipline[])
+const route = useRoute()
 
-onMounted(async () => {
-  const { data } = await getDisciplineByCategoryName('math')
-  disciplines.value = data.data
-})
+watch(
+  () => route.fullPath,
+  async () => {
+    const categoryName = route.fullPath.split('/').pop()!
+    const { data } = await getDisciplineByCategoryName(categoryName)
+    disciplines.value = data.data
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <style lang="scss"></style>

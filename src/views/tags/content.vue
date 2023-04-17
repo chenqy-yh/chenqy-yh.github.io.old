@@ -4,26 +4,25 @@
       <CommonBlock width="90%" color="#fff" class="category-head-block p-6 max-w-[70rem]">
         <div class="block-title flex justify-center text-[#3C4858] pb-3">
           <i class="iconfont icon-tag text-[1.8rem]"> </i>
-          <span class="text-[1.8rem]">Post Categories</span>
+          <span class="text-[1.8rem]">Post Tags</span>
         </div>
         <div class="block-body flex justify-center items-center gap-[2rem]">
           <div
-            v-for="category in categoryList"
+            v-for="discipline in disciplineList"
             class="category-item-tag common-shadow duration-200 py-1 px-3 rounded-md group cursor-pointer"
             :style="{
               backgroundColor: getRandomLightColor(),
             }"
-            @click="handleCategoryClick(category)">
+            @click="handleDisciplineClick(discipline)">
             <span
               class="mr-3 text-[#3C4858] text-[0.85rem] group-hover:text-white duration-200 font-bold"
-              >{{ category.title_en }}</span
+              >{{ discipline.title_en }}</span
             >
-            <span class="text-[red]">{{ category.categoryList.length }}</span>
           </div>
         </div>
       </CommonBlock>
     </div>
-    <div class="category-container w-full px-5 flex justify-center" v-if="!showCategory">
+    <div class="category-container w-full px-5 flex justify-center">
       <CommonBlock
         width="90%"
         height="auto"
@@ -37,45 +36,28 @@
 </template>
 
 <script setup lang="ts">
-import categoryService from '@/composable/category'
-import { getRandomLightColor, ToLink } from '@/utils/function'
-import { echarts_Radar_category } from '@/plugins/echarts'
-import { watch } from 'vue'
-import { RouteRecordRaw, useRoute } from 'vue-router'
+import { getRandomLightColor } from '@/utils/function'
+import { useRoute } from 'vue-router'
+import { getDisciplineList } from '@/apis/category'
 
-const categoryList = ref([] as categoryMate[])
-const showCategory = ref(false)
+const disciplineList = ref([] as Discipline[])
 const route = useRoute()
-watch(
-  route,
-  () => {
-    if (route.fullPath != '/category') {
-      showCategory.value = true
-    } else {
-      showCategory.value = false
-    }
-  },
-  {
-    immediate: true,
-  },
-)
-
-function handleCategoryClick(category: categoryMate) {
-  ToLink(
-    '',
-    false,
-    {
-      path: '/category/' + category.route,
-    } as RouteRecordRaw,
-    undefined,
-  )
-}
 
 onMounted(async () => {
-  const { data } = await categoryService.initCategories()
-  categoryList.value = data
-  if (!showCategory.value) echarts_Radar_category('#category_chart', categoryList.value)
+  const aa = await getDisciplineList()
+  console.log(aa);
+  const { data } = aa
+  disciplineList.value = data.data
+  const tt = [] as any[]
+  disciplineList.value.forEach((item) => {
+    tt.push(item.title_zh)
+  })
+  console.log(tt)
 })
+
+function handleDisciplineClick(discipline: Discipline) {
+  console.log(discipline)
+}
 </script>
 
 <style lang="scss">

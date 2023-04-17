@@ -1,4 +1,4 @@
-import { getDespline, getCategory } from '@/apis/category'
+import { getDisciplineList, getCategory } from '@/apis/category'
 
 class Category {
   categories = ref([] as categoryMate[])
@@ -6,7 +6,7 @@ class Category {
   constructor() {}
 
   public async initDisplines() {
-    const { data } = (await getDespline()) as any
+    const { data } = (await getDisciplineList()) as any
     return data as ResponseResult<Discipline[]>
   }
 

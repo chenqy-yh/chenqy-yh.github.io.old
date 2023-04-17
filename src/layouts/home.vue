@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content min-h-screen bg-gray-200 flex flex-col pb-[5rem]">
+  <div class="home-content min-h-screen bg-gray-200 flex flex-col pb-[5rem] overflow-x-hidden">
     <!-- 菜单 -->
     <!-- top menu -->
     <index-top-menu class="z-[100] fixed top-0 left-0"></index-top-menu>
@@ -94,7 +94,7 @@ const indexBgUrl = CommonEnum.INDEX_BG_URL
 
 //listener
 // typedjs 实现动态输入效果
-nextTick(() => {
+onMounted(async () => {
   pageInit()
   const typed = new Typed('.left-info', {
     strings: ['以蝼蚁之行,展鸿鹄之志', 'To fly ants, show lofty ambitions'],
@@ -115,6 +115,6 @@ function changeBgColor() {
   imgBgDiv.style.backgroundColor = `${getRandomColor()}`
   setInterval(() => {
     imgBgDiv.style.backgroundColor = `${getRandomColor()}`
-  }, Math.random() * 10000 + 10000)
+  }, Math.random() * 1000 + 6000)
 }
 </script>

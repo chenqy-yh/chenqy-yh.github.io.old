@@ -14,9 +14,14 @@ class Menu {
         route: 'post',
         children: [
           {
+            name: 'Tags',
+            icon: 'iconfont icon-tags-fill',
+            route: 'tags.content',
+          },
+          {
             name: 'Categories',
             icon: 'iconfont icon-list',
-            route: 'categories.content',
+            route: 'category.content',
           },
         ],
       },

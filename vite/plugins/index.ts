@@ -3,6 +3,7 @@ import { PluginOption } from 'vite'
 import { setupElementplus } from './elementplus'
 import { setupMockPlugin } from './mock'
 import { ImportMetaEnv } from '../../src/types/viteEnv'
+
 import _ from 'lodash'
 
 function setupVitePlugins(isServe: boolean) {

@@ -1,11 +1,25 @@
 <template>
-  <div id="tttttt" class="w-auto h-auto border border-black">
-    <div class="w-[200px] h-[200px] bg-black"></div>
+  <div>
+    {{ tt }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { echarts_Radar_category } from '@/plugins/echarts'
+import axios from 'axios'
+
+const tt = ref({})
+
+nextTick(async () => {
+  axios
+    .get('//47.99.54.217:3000')
+    .then((res) => {
+      console.log(res)
+      tt.value = res.data
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 </script>
 
 <style lang="scss">

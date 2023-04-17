@@ -1,6 +1,8 @@
 import request from '@/utils/request'
+import { isProd } from '@/utils/common'
 
-export function getDespline() {
+
+export function getDisciplineList() {
   return request({
     url: '/discipline',
     method: 'get',
