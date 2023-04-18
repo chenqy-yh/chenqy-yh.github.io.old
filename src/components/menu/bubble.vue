@@ -2,7 +2,7 @@
   <div class="bubble absolute top-full left-1/2 translate-x-[-50%] flex justify-center">
     <i
       class="iconfont icon-sanjiaoxing_shang absolute -top-[1.75rem] text-[2rem] left-1/2 translate-x-[-50%]"></i>
-    <div class="container w-[8rem] rounded-xl flex flex-col overflow-hidden">
+    <div class="container w-[8rem] flex flex-col overflow-hidden">
       <div
         @click="
           handleMenuClick({
@@ -10,9 +10,9 @@
           } as RouteRecordRaw)
         "
         v-for="menuItem in (props.bubbleList as MenuTag[])"
-        class="grid grid-cols-[auto_1fr] pl-3 hover:bg-[#0000001c] py-[.5rem] px-2 duration-200 z-[9999999999]">
-        <i :class="(menuItem as MenuTag).icon"></i>
-        <span class="text-center">{{ (menuItem as MenuTag).name }}</span>
+        class="text-center pl-3 hover:bg-[#0000001c] py-[.5rem] px-2 duration-200 z-[9999999999]">
+        <i :class="(menuItem as MenuTag).icon" class="text-[14px]"></i>
+        <span class="text-center text-[15px] ml-1">{{ (menuItem as MenuTag).name }}</span>
       </div>
     </div>
   </div>
@@ -31,14 +31,10 @@
 </style>
 
 <script setup lang="ts">
-import common from '@/store/common'
 import { ToLink } from '@/utils/function'
 import { RouteRecordRaw } from 'vue-router'
 
-const commonStore = common()
-
 function handleMenuClick(route: RouteRecordRaw) {
-  console.log(213)
   ToLink('', false, route, undefined)
 }
 

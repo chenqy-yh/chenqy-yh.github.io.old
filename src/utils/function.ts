@@ -54,4 +54,10 @@ function hexToCSSColor(hex: number) {
   return '#' + hexStr
 }
 
+//去掉字符串的非数字字母部分，并且转换为小写
+export function removeNonNumericAndtoLower(str: string) {
+  return str.replace(/[^\w]/gi, '').toLowerCase()
+}
+
+
 export { ToLink, AnchorJump, hexToCSSColor }

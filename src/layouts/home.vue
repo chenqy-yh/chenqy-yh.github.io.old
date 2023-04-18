@@ -19,7 +19,13 @@
             'h-[28.5rem]': !isHome,
             'h-screen': isHome,
           }"
-          class="dim w-full object-cover z-10" />
+          class="dim w-full object-cover z-10 select-none" />
+          <div 
+          :class="{
+            'h-[28.5rem]': !isHome,
+            'h-screen': isHome,
+          }"
+          class="absolute top-0 left-0 w-full bg-black opacity-0"></div>
       </div>
       <div class="top-main-content z-[5]">
         <!-- home title -->
@@ -76,6 +82,10 @@
       .dim {
         opacity: 0.5;
         filter: alpha(opacity=60);
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard syntax */
       }
     }
   }
@@ -84,13 +94,11 @@
 
 <script setup lang="ts">
 import Progressbar from '@/components/common/progressbar.vue'
-import { CommonEnum } from '@/enum/commonEnum'
 import { isHome } from '@/utils/common'
 import { AnchorJump, ToLink, getRandomColor } from '@/utils/function'
 import Typed from 'typed.js'
-import { nextTick } from 'vue'
 
-const indexBgUrl = CommonEnum.INDEX_BG_URL
+const indexBgUrl = `/images/index_${Math.floor(Math.random()*2)+1}.jpg`;
 
 //listener
 // typedjs 实现动态输入效果

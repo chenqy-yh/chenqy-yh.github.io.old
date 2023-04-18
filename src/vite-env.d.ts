@@ -6,3 +6,11 @@ declare module '*.vue' {
   const Component: ReturnType<typeof defineComponent>
   export default Component
 }
+
+declare module 'vue-calendar-heatmap' {
+  import { ComponentOptions } from 'vue'
+
+  const VueCalendarHeatmap: ComponentOptions<any>
+
+  export default VueCalendarHeatmap
+}

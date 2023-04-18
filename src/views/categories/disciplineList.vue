@@ -5,24 +5,25 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { getDisciplineByCategoryName } from '@/apis/category'
-import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const disciplines = ref([] as Discipline[])
 const route = useRoute()
 
-watch(
-  () => route.fullPath,
-  async () => {
-    const categoryName = route.fullPath.split('/').pop()!
-    const { data } = await getDisciplineByCategoryName(categoryName)
-    disciplines.value = data.data
-  },
-  {
-    immediate: true,
-  },
-)
+async function onRouteChange() {
+  const categoryName = route.fullPath.split('/').pop()!
+  const { data } = await getDisciplineByCategoryName(categoryName)
+  disciplines.value = data.data
+}
+
+onMounted(() => {
+  onRouteChange()
+})
+
+onBeforeRouteUpdate(() => {
+  onRouteChange()
+})
 </script>
 
 <style lang="scss"></style>

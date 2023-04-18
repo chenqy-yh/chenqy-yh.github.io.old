@@ -9,6 +9,15 @@ export default {
       path: '',
       name: 'tags.content',
       component: () => import('@/views/tags/content.vue'),
+      children: [
+        {
+          path: '/tags/:categoryName',
+          name: 'tags.detail',
+          component: () => import('@/views/tags/tagsDetail.vue'),
+          props:true,
+        }
+      ],
     },
+    
   ],
 } as RouteRecordRaw

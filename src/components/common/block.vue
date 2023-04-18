@@ -1,7 +1,7 @@
 <template>
   <div
     :ref="getDivRef"
-    class="block-content rounded-xl duration-500"
+    class="block-content -xl duration-500"
     :style="{
       backgroundColor: props.color,
       width: props.width,

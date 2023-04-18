@@ -1,5 +1,4 @@
 import request from '@/utils/request'
-import { isProd } from '@/utils/common'
 
 
 export function getDisciplineList() {

@@ -14,6 +14,9 @@ export default {
           path: '/category/:categoryName',
           name: 'category.disciplineList',
           component: () => import('@/views/categories/disciplineList.vue'),
+          props: {
+            test:123,
+          }
         },
       ],
     },

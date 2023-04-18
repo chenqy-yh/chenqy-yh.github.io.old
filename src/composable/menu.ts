@@ -23,6 +23,11 @@ class Menu {
             icon: 'iconfont icon-list',
             route: 'category.content',
           },
+          {
+            name: 'Archives',
+            icon: 'iconfont icon-archive',
+            route: 'archives.content',
+          },
         ],
       },
       {

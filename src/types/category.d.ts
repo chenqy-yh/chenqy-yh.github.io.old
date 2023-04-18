@@ -4,14 +4,6 @@ interface categoryMate {
   title_en: string
   categoryList: string[]
   route: string
+  active?: boolean,
 }
 
-interface Discipline {
-  id: string
-  title_zh: string
-  title_en: string
-  last_update: string
-  pic: string
-  description: string
-  belongCategory: string
-}
