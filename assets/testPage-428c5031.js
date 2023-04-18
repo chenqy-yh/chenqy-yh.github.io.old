@@ -1,1 +1,0 @@
-import{d as e,o as t,c as s,a as o}from"./index-78afb2e8.js";const a={id:"tttttt",class:"w-auto h-auto border border-black"},_=o("div",{class:"w-[200px] h-[200px] bg-black"},null,-1),c=[_],i=e({__name:"testPage",setup(n){return(r,d)=>(t(),s("div",a,c))}});export{i as default};

@@ -1,0 +1,1 @@
+import{s as t}from"./request-faf243a5.js";function r(e){return t({url:`/tags/getdisciplinebycategoryname/${e}`,method:"get"})}function g(e){return e===void 0?t({url:"/tags",method:"get"}):t({url:"/tags/findtagsbydisciplineid/"+e,method:"get"})}export{r as a,g};
