@@ -1,0 +1,1 @@
+import{s as e}from"./request-df946b51.js";function i(){return e({url:"/discipline",method:"get"})}function o(){return e({url:"/category",method:"get"})}function n(t){return e({url:"/category/"+t,method:"get"})}export{i as a,o as b,n as g};

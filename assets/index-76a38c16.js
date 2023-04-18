@@ -1,4 +1,4 @@
-import{a as iL}from"./function-63f9beeb.js";import{d as oL,o as sL,c as lL,x as uL,y as fL,z as hL,u as vL}from"./index-5ee049a5.js";const NZ=oL({__name:"smallBlock",props:{active:{type:Boolean,default:!1}},setup(r){const e=r;return(t,a)=>(sL(),lL("div",{class:fL(["small-block common-shadow duration-200 py-1 px-4 group cursor-pointer",{active:e.active}]),style:hL({backgroundColor:vL(iL)()})},[uL(t.$slots,"default")],6))}});/*! *****************************************************************************
+import{a as iL}from"./function-7f8c6f3d.js";import{d as oL,o as sL,c as lL,x as uL,y as fL,z as hL,u as vL}from"./index-73417a36.js";const NZ=oL({__name:"smallBlock",props:{active:{type:Boolean,default:!1}},setup(r){const e=r;return(t,a)=>(sL(),lL("div",{class:fL(["small-block common-shadow duration-200 py-1 px-4 group cursor-pointer",{active:e.active}]),style:hL({backgroundColor:vL(iL)()})},[uL(t.$slots,"default")],6))}});/*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
