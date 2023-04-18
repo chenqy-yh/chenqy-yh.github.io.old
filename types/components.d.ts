@@ -13,7 +13,6 @@ declare module '@vue/runtime-core' {
     CommonBlock: typeof import('./../src/components/common/block.vue')['default']
     CommonButton: typeof import('./../src/components/common/button.vue')['default']
     CommonCard: typeof import('./../src/components/common/card.vue')['default']
-    CommonContributions: typeof import('./../src/components/common/contributions.vue')['default']
     CommonLink: typeof import('./../src/components/common/link.vue')['default']
     CommonProgressbar: typeof import('./../src/components/common/progressbar.vue')['default']
     CommonSmallBlock: typeof import('./../src/components/common/smallBlock.vue')['default']
